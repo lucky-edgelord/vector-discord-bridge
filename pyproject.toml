@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vector-discord-bridge"
+version = "0.1.0"
+description = "Clone a Discord server into a Vector Community and bridge them so both act as one space."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [{ name = "lucky-edgelord" }]
+dependencies = [
+    "discord.py>=2.3",
+    "vector-sdk-py @ git+https://github.com/lucky-edgelord/vector-sdk-py",
+    "aiohttp>=3.8",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7", "pytest-asyncio>=0.21"]
+
+[project.scripts]
+vdbridge = "vector_discord_bridge.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["vector_discord_bridge*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
